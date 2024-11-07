@@ -1,6 +1,6 @@
 # Information Noise Reduction For Investors 🏦
 
-This research and development project proposes a novel methodology for investors to select relevant variables and mitigate informational noise in complex market models. The approach leverages neural networks as a flexible class of models, incorporating the assumption that the relationships between variables are non-linear. Neural networks are treated as probabilistic models that estimate the likelihood of a variable contributing valuable information to the prediction task. 
+This research and development project proposes a methodology for investors to select relevant variables and mitigate informational noise in complex market models. The approach leverages neural networks as a flexible class of models, incorporating the assumption that the relationships between variables are non-linear. Neural networks are treated as probabilistic models that permit to estimate the likelihood of a variable contributing valuable information to the prediction task. 
 
 ## Table of Contents
 

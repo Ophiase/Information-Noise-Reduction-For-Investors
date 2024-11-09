@@ -19,6 +19,6 @@ conda_install:
 	conda env create -f environment.yml
 
 conda_remove:
-	conda remove --name social-group-clustering --all
+	conda remove --name information-noise-reduction-for-investors --all
 
 .PHONY: run

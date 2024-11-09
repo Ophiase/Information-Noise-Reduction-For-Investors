@@ -7,9 +7,7 @@ This research and development project proposes a methodology for investors to se
 - [Introduction](#introduction)
     - [Example of Model Reduction](#example-of-model-reduction)
 - [Features](#features)
-- Setup
-    - [Installation](#installation)
-    - [Run](#run)
+- [Setup](#setup)
 - [Future Development](#future-development)
 
 ## Introduction
@@ -41,12 +39,61 @@ After training a neural network, the model might find that some of these variabl
 
 ### Installation
 
-### Run
+- Docker installation
+
+```sh
+docker build -t information-noise-reduction-for-investors
+```
+
+- conda install of the dependencies :
+
+```sh
+conda env create -f environment.yml
+```
+
+### Usage
+
+```python
+# Imports
+from information_noise_reduction.subset_generator import reverse_all_subsets_generator
+from information_noise_reduction.evaluate_model import evaluate_subsets
+from information_noise_reduction.interpretation import compute_variable_contributions
+# define a model generator
+def model_generator(input_dim: int) -> tf.keras.Sequential:
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(64, activation='sigmoid', input_shape=(input_dim,)),
+        tf.keras.layers.Dense(32, activation='sigmoid'),
+        tf.keras.layers.Dense(1)
+    ])
+    model.compile(optimizer='adam', loss='mse')
+    return model
+# evaluate subsets
+subset_gen = reverse_all_subsets_generator(feature_columns)
+result = evaluate_subsets(
+    df, target_col=prediction_column, 
+    subset_gen=subset_gen, 
+    model_generator=model_generator, 
+    max_subsets=10, epochs=10)
+# compute variables scores
+variable_contributions = compute_variable_contributions(result)
+```
+
+### Demonstrations
+
+Open notebooks in `/examples`.
 
 ## Future Development
 
+- Stochastic model generator
+    - For a subset of variables, we want to evaluate different models, with different properties.
 - Support larger datasets with more than about ten variables.
+    - The number of subsets grow exponentialy with the number of variables. Thus, if we want to consider large set of variables. We need to only evaluate a finite number of subsets. 
+    - How to choose them with good statistical properties ?
+        - Proposition: Geometric Law to select the number $k$ of variable to remove each time, and then uniform law to select the subset of $N-k$ variables. 
+        - If we pick twice a specific subset, we also pick another realization of the model generator and thus get more certainty on this subset loss.
 - Improve the variable importance estimation technique by integrating other machine learning algorithms.
-    - Example: Use LSTM to analyse relevant variables in timeseries.
-- Add more sophisticated noise reduction mechanisms to handle even more complex datasets.
+    - Eg: Use LSTM to analyse relevant variables in timeseries.
+    - Eg: Use VAE to find the optimal latent space. \
+    Then try to project the importance of each variables by using the loss of the subset they are part of.
 - Implement an interactive dashboard to visualize variable importance and interrelationships.
+

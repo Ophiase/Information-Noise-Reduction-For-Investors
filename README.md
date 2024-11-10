@@ -22,10 +22,11 @@ The focus of this project will be on cases where investors have up to 10 variabl
 
 ### Example of Model Reduction
 
-Suppose an investor is attempting to predict the price of a stock based on the following 10 variables: 
-- Interest Rate (IR), GDP Growth (GDP), Oil Price (OP), Stock Market Index (SMI), Inflation Rate (IRR), Unemployment Rate (UR), Currency Exchange Rate (CER), Government Debt (GD), Consumer Confidence Index (CCI), and the Company’s Revenue (CR). 
+Suppose a financial analyst is attempting to predict the likelihood of bankruptcy based on the following financial indicators: 
+- ROA(C) before interest and depreciation before interest, Operating Gross Margin, Realized Sales Gross Margin, Operating Profit Rate, Pre-tax net Interest Rate, Cash Flow Per Share, Current Ratio, Quick Ratio, Total debt/Total net worth, Debt ratio %, among others.
 
-After training a neural network, the model might find that some of these variables, such as **GDP Growth**, **Unemployment Rate**, and **Government Debt**, do not contribute meaningfully to predicting the stock price. In contrast, **Interest Rate**, **Oil Price**, **Stock Market Index**, and **Company’s Revenue** would likely emerge as the most significant predictors. By reducing the model to focus on these variables, the investor can simplify their analysis, avoid unnecessary complexity, and reduce the noise introduced by irrelevant features, leading to a more efficient and effective model for decision-making.
+After training a neural network on this dataset, the model may identify some variables, such as **Pre-tax net Interest Rate**, **Quick Ratio**, and **Debt ratio %**, as insignificant predictors of bankruptcy. In contrast, **ROA(C) before interest and depreciation before interest**, **Operating Gross Margin**, **Operating Profit Rate**, **Current Ratio**, and **Cash Flow Per Share** may emerge as the most significant predictors. By reducing the model to focus on these key variables, the analyst can streamline the analysis, minimize complexity, and reduce the noise from irrelevant features, making the bankruptcy prediction model more efficient and accurate for decision-making.
+
 
 
 ## Features
@@ -80,7 +81,7 @@ variable_contributions = compute_variable_contributions(result)
 
 ### Demonstrations
 
-Open notebooks in `/examples`.
+Open the notebooks in `/examples`.
 
 ## Future Development
 

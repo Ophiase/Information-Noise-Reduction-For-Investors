@@ -6,14 +6,12 @@ from sklearn.metrics import mean_squared_error
 
 
 
-def select_important_features_with_lasso(df):
+def select_important_features_with_lasso(X,y):
     """
     Applies Lasso regression with cross-validation to select important features for predicting bankruptcy.
-    :param df: DataFrame with predictor variables and target 'Bankrupt?'
+    :param df: X (features), y (target variable)
     :return: List of important features selected by the Lasso model
     """
-    X = df.drop(columns=['Bankrupt?'])
-    y = df['Bankrupt?']
     
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)

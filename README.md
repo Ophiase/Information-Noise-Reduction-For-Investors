@@ -69,14 +69,13 @@ def model_generator(input_dim: int) -> tf.keras.Sequential:
     model.compile(optimizer='adam', loss='mse')
     return model
 # evaluate subsets
-subset_gen = reverse_all_subsets_generator(feature_columns)
-result = evaluate_subsets(
-    df, target_col=prediction_column, 
-    subset_gen=subset_gen, 
-    model_generator=model_generator, 
-    max_subsets=10, epochs=10)
+model_gen = model_generator
+subset_losses, subset_weights = evaluate_subsets(
+    df, target_col=target_column, model_generator=model_gen, 
+    max_subsets=10, target_max_variables=4, epochs=10)
 # compute variables scores
-variable_contributions = compute_variable_contributions(result)
+variable_contributions = compute_variable_contributions(subset_losses)
+top_variables = top_k_variables(variable_contributions['normalized_scores'], 4)
 ```
 
 ### Demonstrations

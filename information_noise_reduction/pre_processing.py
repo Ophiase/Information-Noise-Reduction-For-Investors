@@ -3,16 +3,19 @@ from sklearn.linear_model import  Lasso
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error
+from sklearn.feature_selection import SelectKBest, f_regression
 
 
-
-def select_important_features_with_lasso(X,y):
+def select_important_features_with_lasso(X: pd.DataFrame, y: pd.Series, k: int) -> List[str]:
     """
-    Applies Lasso regression with cross-validation to select important features for predicting bankruptcy.
-    :param df: X (features), y (target variable)
-    :return: List of important features selected by the Lasso model
-    """
+    Applies Lasso regression with cross-validation to select important features, 
+    then retains the k most significant features after redundancy testing.
     
+    :param X: DataFrame of features
+    :param y: Target variable
+    :param k: Number of top features to select after redundancy testing
+    :return: List of top k important features selected by the Lasso model
+    """
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
@@ -25,4 +28,10 @@ def select_important_features_with_lasso(X,y):
     lasso_coefficients = pd.Series(best_lasso.coef_, index=X.columns)
     important_features = lasso_coefficients[lasso_coefficients != 0].index.tolist()
     
-    return important_features
+    X_important = X[important_features]
+    selector = SelectKBest(score_func=f_regression, k=k)
+    selector.fit(X_important, y)
+    top_k_features = X_important.columns[selector.get_support()].tolist()
+    
+    return top_k_features
+

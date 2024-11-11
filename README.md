@@ -84,13 +84,6 @@ Open the notebooks in `/examples`.
 
 ## Future Development
 
-- Stochastic model generator
-    - For a subset of variables, we want to evaluate different models, with different properties.
-- Support larger datasets with more than about ten variables.
-    - The number of subsets grow exponentialy with the number of variables. Thus, if we want to consider large set of variables. We need to only evaluate a finite number of subsets. 
-    - How to choose them with good statistical properties ?
-        - Proposition: Geometric Law to select the number $k$ of variable to remove each time, and then uniform law to select the subset of $N-k$ variables. 
-        - If we pick twice a specific subset, we also pick another realization of the model generator and thus get more certainty on this subset loss.
 - Improve the variable importance estimation technique by integrating other machine learning algorithms.
     - Eg: Use LSTM to analyse relevant variables in timeseries.
     - Eg: Use VAE to find the optimal latent space. \

@@ -88,5 +88,6 @@ Open the notebooks in `/examples`.
     - Eg: Use LSTM to analyse relevant variables in timeseries.
     - Eg: Use VAE to find the optimal latent space. \
     Then try to project the importance of each variables by using the loss of the subset they are part of.
+- Genetic subset exploration.
 - Implement an interactive dashboard to visualize variable importance and interrelationships.
 

@@ -1,3 +1,4 @@
+from typing import List
 import pandas as pd
 from sklearn.linear_model import  Lasso
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -6,7 +7,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.feature_selection import SelectKBest, f_regression
 
 
-def select_important_features_with_lasso(X: pd.DataFrame, y: pd.Series, k: int) -> List[str]:
+def select_important_features_with_lasso(df: pd.DataFrame, target_col: str, k: int = 20) -> List[str]:
     """
     Applies Lasso regression with cross-validation to select important features, 
     then retains the k most significant features after redundancy testing.
@@ -16,6 +17,8 @@ def select_important_features_with_lasso(X: pd.DataFrame, y: pd.Series, k: int) 
     :param k: Number of top features to select after redundancy testing
     :return: List of top k important features selected by the Lasso model
     """
+    X, y = df.drop(columns=[target_col]), df[target_col].values
+
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     

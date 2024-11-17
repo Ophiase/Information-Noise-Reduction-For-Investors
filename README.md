@@ -88,8 +88,8 @@ Open the notebooks in `/examples`.
 
 ## Future Development
 
+- Study the specificity of timeseries for variable selection (eg: LSTM).
 - Improve the variable importance estimation technique by integrating other machine learning algorithms.
-    - Eg: Use LSTM to analyse relevant variables in timeseries.
     - Eg: Use VAE to find the optimal latent space. \
     Then try to project the importance of each variables by using the loss of the subset they are part of.
 - Genetic subset exploration.

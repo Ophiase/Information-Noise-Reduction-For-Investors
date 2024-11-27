@@ -1,6 +1,6 @@
 PYTHON = python3
 SOURCES = client/main.py
-TESTS = test_x
+TESTS = test_subset_generator
 EXAMPLES =
 
 # ----------------------------------------------------------------------------------

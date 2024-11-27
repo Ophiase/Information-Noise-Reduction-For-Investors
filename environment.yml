@@ -4,8 +4,15 @@ channels:
 dependencies:
   - python=3.11.5
   - numpy
-  - opencv
+  - pandas
+  - scikit-learn
+  - tensorflow
+  - keras
   - matplotlib
-  - pip
+  - opencv
   - kagglehub
+  - pip
+  - ipykernel
+  - jupyter
   - pip:
+    - keras-tuner

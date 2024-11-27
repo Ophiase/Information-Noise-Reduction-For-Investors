@@ -2,7 +2,9 @@
 
 This research and development project proposes a methodology for investors to select relevant variables and mitigate informational noise in complex market models. 
 
-The approach leverages neural networks as a flexible class of models, incorporating the assumption that the relationships between variables are non-linear. Neural networks are treated as probabilistic models that permit to estimate the likelihood of a variable contributing valuable information to the prediction task. 
+The approach leverages neural networks as a flexible class of models, incorporating the assumption that the relationships between variables are non-linear. Neural networks are treated as probabilistic models that permit to estimate the likelihood of a variable contributing valuable information to the prediction task. \
+
+The class of models (i.e., ``ModelGenerator``) represents potential theories that could explain the data. By evaluating model performance, we estimate the probability of variable subsets contributing to the output prediction.
 
 This work is inspired by the theory of **Rational Inattention** *(Sims, 2003, and Mackowiak and Wiederholt, 2009)*.
 
@@ -22,7 +24,7 @@ Unlike traditional linear models, neural networks are used here solely to estima
 
 For example, if a neural network produces similar results (same loss, using cross-validation) when considering a model with or without a specific variable, this indicates that the variable might not add significant information to the model. This insight helps investors avoid overcomplicating their analysis and focus on the truly impactful variables.
 
-The focus of this project will be on cases where investors have up to 10 variables to work with, and they seek to understand the relationships between these variables in a non-linear way.
+This project focuses on scenarios where investors require fewer than 10 variables and aim to capture non-linear relationships between them. The core algorithm is designed to handle datasets with fewer than 100 variables. For high-dimensional data, such as images, we assume a dimensionality reduction step (preprocessing) to a feature vector with fewer than 100 components.
 
 ### Example of Model Reduction
 
@@ -36,9 +38,9 @@ After training a neural network on this dataset, the model may identify some var
 ## Features
 
 - **Variable Importance Estimation**: Uses neural networks to estimate the significance of each variable in relation to the target outcome.
-- **Cross-Validation Model**: The project will leverage cross-validation to assess how the inclusion of each variable affects model performance.
 - **Noise Reduction**: Identifies which variables are redundant or irrelevant to the model’s predictive power, reducing mental noise for investors.
 - **Inter-variable Relationships**: Helps to detect dependencies between variables, showing which ones are functionally related to others.
+    - Not implemented yet for non-linear relationships, (cf: Future Development, VAE)
 
 ## Setup
 
